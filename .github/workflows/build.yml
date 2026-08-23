@@ -50,7 +50,7 @@ jobs:
           mkdir -p /tmp/twrp
           cd /tmp/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
-          repo sync -c --no-clone-bundle --no-tags -j2
+          repo sync -c --depth=1 --no-clone-bundle --no-tags -j2
 
       - name: Copy Device Tree
         run: |
