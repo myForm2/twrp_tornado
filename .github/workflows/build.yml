@@ -13,19 +13,12 @@ jobs:
 
       - name: Free Disk Space
         run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
           sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
           sudo rm -rf /opt/ghc
-          sudo rm -rf /opt/hostedtoolcache
-          sudo rm -rf /usr/share/swift
-          sudo rm -rf /usr/local/share/boost
-          sudo docker image prune --all --force
-          sudo apt-get remove -y '^dotnet-.*' '^llvm-.*' 'php.*' 'azure-cli' 'google-cloud-sdk' 'google-chrome-stable' 'firefox' 'powershell'
-          sudo apt-get autoremove -y
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
           sudo apt-get clean
-          df -h         
+          sudo docker system prune -af || true
 
       - name: Install Dependencies
         run: |
@@ -50,7 +43,7 @@ jobs:
           mkdir -p /tmp/twrp
           cd /tmp/twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
-          repo sync -c --depth=1 --no-clone-bundle --no-tags -j2
+          repo sync -c --no-clone-bundle --no-tags -j2
 
       - name: Copy Device Tree
         run: |
