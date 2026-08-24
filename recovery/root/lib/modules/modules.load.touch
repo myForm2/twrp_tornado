@@ -6,6 +6,8 @@
 /lib/modules/lct_tp.ko
 /lib/modules/xiaomi_tp.ko
 /lib/modules/nt36528a_spi.ko
+/lib/modules/td4160_spi.ko
+/lib/modules/focaltech_spi.ko
 /lib/modules/thermal_interface.ko
 /lib/modules/soc_temp_lvts.ko
 /lib/modules/mi_thermal_interface.ko
