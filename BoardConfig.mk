@@ -197,4 +197,4 @@ TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 # Use legacy code for battery readout
 TW_USE_LEGACY_BATTERY_SERVICES := true
 TW_LOAD_VENDOR_BOOT_MODULES := true
-TW_DEVICE_VERSION := @Qbhi_@heppysingh
+TW_DEVICE_VERSION := @heppysingh
