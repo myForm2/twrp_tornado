@@ -34,20 +34,45 @@ done
 
 if [ -f /vendor/build.prop ]; then
     OS_VER=$(grep "ro.vendor.build.version.release=" /vendor/build.prop | head -n 1 | cut -d'=' -f2)
-    log_msg "Detected /vendor OS version: $OS_VER"
+    PATCH_LEVEL=$(grep "ro.vendor.build.security_patch=" /vendor/build.prop | head -n 1 | cut -d'=' -f2)
+    SDK_VER=$(grep "ro.vendor.build.version.sdk=" /vendor/build.prop | head -n 1 | cut -d'=' -f2)
+    log_msg "Detected /vendor OS version: $OS_VER, patch: $PATCH_LEVEL, sdk: $SDK_VER"
     
-    if [ "$OS_VER" = "15" ]; then
-        log_msg "Android 15 detected! Overriding properties to fix Error -38..."
-        resetprop ro.build.version.release 15
-        resetprop ro.build.version.release_or_codename 15
-        resetprop ro.vendor.build.version.release 15
-        resetprop ro.system.build.version.release 15
-    else
-        log_msg "Android $OS_VER detected. Sticking with default (v14) to protect data."
+    if [ -n "$OS_VER" ]; then
+        resetprop ro.build.version.release "$OS_VER"
+        resetprop ro.build.version.release_or_codename "$OS_VER"
+        resetprop ro.vendor.build.version.release "$OS_VER"
+        resetprop ro.system.build.version.release "$OS_VER"
+        resetprop ro.odm.build.version.release "$OS_VER"
+        resetprop ro.product.build.version.release "$OS_VER"
+        resetprop ro.system_ext.build.version.release "$OS_VER"
+    fi
+    if [ -n "$PATCH_LEVEL" ]; then
+        resetprop ro.build.version.security_patch "$PATCH_LEVEL"
+        resetprop ro.vendor.build.security_patch "$PATCH_LEVEL"
+    fi
+    if [ -n "$SDK_VER" ]; then
+        resetprop ro.build.version.sdk "$SDK_VER"
+        resetprop ro.vendor.build.version.sdk "$SDK_VER"
+        resetprop ro.system.build.version.sdk "$SDK_VER"
     fi
 else
     log_msg "Warning: /vendor/build.prop not found after wait. Using ramdisk defaults."
 fi
+
+# Ensure device identity properties match tornado
+resetprop ro.product.name "tornado"
+resetprop ro.product.device "tornado"
+resetprop ro.product.board "tornado"
+resetprop ro.product.model "REDMI 15C 5G"
+resetprop ro.product.brand "Redmi"
+resetprop ro.product.manufacturer "Xiaomi"
+
+# Ensure keystore directories exist with system permissions
+mkdir -p /tmp/misc/keystore
+mkdir -p /tmp/keystore
+chown -R system:system /tmp/misc 2>/dev/null
+chmod -R 0775 /tmp/misc 2>/dev/null
 
 # Ensure utilities are executable
 chmod 755 /system/bin/mtk_plpath_utils

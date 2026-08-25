@@ -34,15 +34,29 @@ void property_override(const std::string& name, const std::string& value)
 
 void model_property_override(const std::string& device, const std::string& name, const std::string& model)
 {
+    property_override("ro.product.device", device);
+    property_override("ro.product.board", device);
+    property_override("ro.product.brand", "Redmi");
+    property_override("ro.product.manufacturer", "Xiaomi");
+    property_override("ro.product.odm.brand", "Redmi");
+    property_override("ro.product.odm.manufacturer", "Xiaomi");
     property_override("ro.product.odm.device", device);
+    property_override("ro.product.system.brand", "Redmi");
+    property_override("ro.product.system.manufacturer", "Xiaomi");
     property_override("ro.product.system.device", device);
+    property_override("ro.product.vendor.brand", "Redmi");
+    property_override("ro.product.vendor.manufacturer", "Xiaomi");
     property_override("ro.product.vendor.device", device);
     property_override("ro.build.product", device);
     property_override("ro.product.odm.name", device);
     property_override("ro.product.product.device", device);
+    property_override("ro.product.product.brand", "Redmi");
+    property_override("ro.product.product.manufacturer", "Xiaomi");
     property_override("ro.product.product.name", device);
     property_override("ro.product.system.name", device);
     property_override("ro.product.system_ext.device", device);
+    property_override("ro.product.system_ext.brand", "Redmi");
+    property_override("ro.product.system_ext.manufacturer", "Xiaomi");
     property_override("ro.product.system_ext.name", device);
     property_override("ro.product.vendor.name", device);
     property_override("ro.product.model", model);
