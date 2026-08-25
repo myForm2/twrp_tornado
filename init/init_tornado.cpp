@@ -54,13 +54,13 @@ void model_property_override(const std::string& device, const std::string& name,
 }
 
 void vendor_load_properties() {
-    property_override("ro.product.name", "air");
-    property_override("ro.bootimage.build.date.utc", "1609430400");
-    property_override("ro.build.date.utc", "1609430400");
+    property_override("ro.product.name", "tornado");
+    property_override("ro.bootimage.build.date.utc", "1780931795");
+    property_override("ro.build.date.utc", "1780931795");
     const std::string sku = GetProperty("ro.boot.product.hardware.sku", "");
     if (sku == "stone_p") {
-        model_property_override("air", "22071219CG", "POCO M5");
+        model_property_override("tornado", "2508CRN2BI", "REDMI 15C 5G");
     } else {
-        model_property_override("air", "22071219CG", "POCO M5");
+        model_property_override("tornado", "2508CRN2BI", "REDMI 15C 5G");
     }
 }
