@@ -1,6 +1,6 @@
 #!/system/bin/sh
 set -x
-# TWRP Debug Boot Script - @vbs_1 & @dream_7x - Final-Success
+# TWRP Debug Boot Script - @heppysingh - Final-Success
 LOGFILE="/tmp/debug_boot.log"
 
 log_msg() {
@@ -10,7 +10,7 @@ log_msg() {
 
 exec > $LOGFILE 2>&1
 
-log_msg "--- TWRP @vbs_1 & @dream_7x DEBUG BOOT START ---"
+log_msg "--- TWRP @heppysingh DEBUG BOOT START ---"
 date
 id
 
